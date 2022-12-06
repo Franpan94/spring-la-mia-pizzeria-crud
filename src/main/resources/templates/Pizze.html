@@ -13,17 +13,7 @@
    <button class="btn btn-primary">
       <a href="/pizza/create" class="ms_text_decoration text-white">Aggiungi nuova pizza</a>
    </button>
-   <div th:each="pizza : ${pizze}" th:object="${pizza}">
-         <div class="p-3">
-            <a class="pb-3 ms_text_decoration" th:href="@{/pizza/{id} (id=*{id})}">[[*{name}]]</a>
-            <button class="btn btn-warning">
-               <a class="text-dark ms_text_decoration" th:href="@{/pizza/edit/{id} (id=*{id})}">Modifica la tua pizza</a>
-            </button>
-            <button class="btn btn-danger">
-               <a class="text-white ms_text_decoration" th:href="@{/pizza/delete{id} (id=*{id})}">Elimina</a>
-            </button>
-         </div>
-     </div>
-     <h4 class="pt-5" th:unless="${pizze.size() > 0}">Non sono presenti pizze al momento</h4>
+   <div th:replace= "frag :: pizze (${pizze})" ></div>
+   <h4 class="pt-5" th:unless="${pizze.size() > 0}">Non sono presenti pizze al momento</h4>
 </body>
 </html>

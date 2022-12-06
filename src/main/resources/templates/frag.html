@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+   <div th:fragment="pizze(pz)" th:each="pizza : ${pz}" th:object="${pizza}">
+        <div class="p-3">
+            <a class="pb-3 ms_text_decoration" th:href="@{/pizza/{id} (id=*{id})}">[[*{name}]]</a>
+            <button class="btn btn-warning">
+               <a class="text-dark ms_text_decoration" th:href="@{/pizza/edit/{id} (id=*{id})}">Modifica la tua pizza</a>
+            </button>
+            <button class="btn btn-danger">
+               <a class="text-white ms_text_decoration" th:href="@{/pizza/delete{id} (id=*{id})}">Elimina</a>
+            </button>
+         </div>
+   </div>
+</body>
+</html>
