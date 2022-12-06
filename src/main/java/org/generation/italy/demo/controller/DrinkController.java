@@ -3,8 +3,8 @@ package org.generation.italy.demo.controller;
 import java.util.List;
 import java.util.Optional;
 
-import org.generation.italy.demo.pojo.Pizzeria;
-import org.generation.italy.demo.serv.PizzeriaService;
+import org.generation.italy.demo.pojo.Drink;
+import org.generation.italy.demo.serv.DrinkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,42 +19,72 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import jakarta.validation.Valid;
 
 @Controller
-@RequestMapping("/")
-public class PizzeriaController {
-    
-    @Autowired
-    PizzeriaService pizzeriaService;
+@RequestMapping("/drink")
+public class DrinkController {
+
+	@Autowired
+	DrinkService drinkService;
 	
 	@GetMapping
 	public String index(Model model) {
 		
-		List<Pizzeria> pizze = pizzeriaService.findAll();
-		model.addAttribute("pizze", pizze);
+		List<Drink> drinks = drinkService.findAll();
+		model.addAttribute("drinks", drinks);
 		
-		return "Pizze";
+		return "Drinks";
 	}
 	
-	@GetMapping("/pizza/{id}")
+	@GetMapping("/{id}")
 	public String show(@PathVariable("id") int id, Model model) {
 		
-		Optional<Pizzeria> optPizza = pizzeriaService.findPizzaId(id);
-		Pizzeria pizza = optPizza.get();
-		model.addAttribute("pizza", pizza);
+		Optional<Drink> optDrink = drinkService.findById(id);
+		Drink drink = optDrink.get();
+		model.addAttribute("drink", drink);
 		
-		return "Pizza";
+		return "Drink";
 	}
 	
-	@GetMapping("/pizza/create")
+	@GetMapping("/create")
 	public String create(Model model) {
 		
-		Pizzeria pizza = new Pizzeria();
-		model.addAttribute("pizza", pizza);
+		Drink drink = new Drink();
+		model.addAttribute("drink", drink);
 		
-		return "PizzaCreate";
+		return "DrinkCreate";
 	}
 	
-	@PostMapping("/pizza/store")
-	public String store(@Valid @ModelAttribute("pizza") Pizzeria pizza,
+	@PostMapping("/store")
+	public String store(@Valid @ModelAttribute("drink") Drink drink, 
+		BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+		
+        if (bindingResult.hasErrors()) {
+			
+			System.err.println("ERROR ------------------------------------------");
+			System.err.println(bindingResult.getAllErrors());
+			System.err.println("------------------------------------------------");
+			
+			redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
+			
+			return "redirect:/drink/create";
+		}
+		
+		drinkService.save(drink);
+		
+		return "redirect:/drink";
+	}
+	
+	@GetMapping("/edit/{id}")
+	public String edit(@PathVariable("id") int id, Model model) {
+		
+		Optional<Drink> optDrink = drinkService.findById(id);
+		Drink drink = optDrink.get();
+		model.addAttribute("drink", drink);
+		
+		return "DrinkEdit";
+	}
+	
+	@PostMapping("/update")
+	public String update(@Valid Drink drink, 
 			BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 		
         if (bindingResult.hasErrors()) {
@@ -65,51 +95,21 @@ public class PizzeriaController {
 			
 			redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
 			
-			return "redirect:/pizza/create";
+			return "redirect:/drink/edit/" + drink.getId();
 		}
+       
+		drinkService.save(drink);
 		
-		pizzeriaService.save(pizza);
-		
-		return "redirect:/";
+		return "redirect:/drink";
 	}
 	
-	@GetMapping("/pizza/edit/{id}")
-	public String edit(@PathVariable("id") int id, Model model) {
-		
-		Optional<Pizzeria> optPizza = pizzeriaService.findPizzaId(id);
-		Pizzeria pizza = optPizza.get();
-		model.addAttribute("pizza", pizza);
-		
-		return "PizzaEdit";
-	}
-	
-	@PostMapping("/pizza/update")
-	public String update(@Valid Pizzeria pizza,
-			BindingResult bindingResult, RedirectAttributes redirectAttributes) {
-		
-       if (bindingResult.hasErrors()) {
-			
-			System.err.println("ERROR ------------------------------------------");
-			System.err.println(bindingResult.getAllErrors());
-			System.err.println("------------------------------------------------");
-			
-			redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
-			
-			return "redirect:/pizza/edit/" + pizza.getId();
-		}
-		
-		pizzeriaService.save(pizza);
-		
-		return "redirect:/";
-	}
-	
-	@GetMapping("/pizza/delete/{id}")
+	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable("id") int id) {
 		
-		Optional<Pizzeria> optPizza = pizzeriaService.findPizzaId(id);
-		Pizzeria pizza = optPizza.get();
-		pizzeriaService.delete(pizza);
+		Optional<Drink> optDrink = drinkService.findById(id);
+		Drink drink = optDrink.get();
+		drinkService.delete(drink);
 		
-		return "redirect:/";
+		return "redirect:/drink";
 	}
 }

@@ -2,7 +2,9 @@ package org.generation.italy.demo;
 
 import java.util.List;
 
+import org.generation.italy.demo.pojo.Drink;
 import org.generation.italy.demo.pojo.Pizzeria;
+import org.generation.italy.demo.serv.DrinkService;
 import org.generation.italy.demo.serv.PizzeriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -14,6 +16,9 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner {
 	
 	@Autowired
 	private PizzeriaService pizzeriaService;
+	
+	@Autowired
+	private DrinkService drinkService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringLaMiaPizzeriaCrudApplication.class, args);
@@ -37,6 +42,23 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner {
 		
 		//Leggiamo le pizze salvate
 		List<Pizzeria> pizze = pizzeriaService.findAll();
+		System.out.println(pizze);
+		
+		//Creazione drinks
+		Drink d1 = new Drink("Gin-tonic", "https://winedharma.com/wine-dharma/uploads/2020/10/Gin-Tonic-cocktail-ricetta-cocktail-con-gin-e-acqua-tonica.-Gin-tonic-con-lime.jpg", "Una bevanda alcolica, neutra e digeribile", 8);
+		Drink d2 = new Drink("Donperignon", "https://media-verticommnetwork1.netdna-ssl.com/wines/dom-perignon-vintage-492333.jpg", "Una bevanda di alta qualità ottima per un buon aperitivo", 450);
+		Drink d3 = new Drink("Negroni", "https://www.bargiornale.it/wp-content/uploads/sites/4/2018/09/negroni.png", "Una bevanda molto alcolica, poco digeribile", 10);
+	    Drink d4 = new Drink("Spritz", "https://upload.wikimedia.org/wikipedia/commons/0/05/Spritz01.jpg", "Una bevanda leggermente alcolica, per ottimi aperitivi", 9);
+		Drink d5 = new Drink("Coca-cola", "https://www.topbevande.it/images/thumbs/0085545_coca-cola-original-33cl-confezione-da-24-barattoli-lattina_780.jpeg", "Una bevanda gassata e molto buona da bere in qualsiasi momento", 3);
+				
+		drinkService.save(d1);
+		drinkService.save(d2);
+		drinkService.save(d3);
+		drinkService.save(d4);
+		drinkService.save(d5);
+				
+		//Leggiamo i nostri drinks
+		List<Drink> drinks = drinkService.findAll();
+		System.out.println(drinks);
 	}
-
 }

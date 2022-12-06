@@ -1,7 +1,5 @@
 package org.generation.italy.demo.pojo;
 
-
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,52 +14,42 @@ import jakarta.validation.constraints.Size;
 
 @Entity
 @Table
-public class Pizzeria {
+public class Drink {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+	private int id;
 	
-	@NotEmpty(message="Il nome deve contenere qualcosa")
-	@Size(min=3, message="Il nome deve contenere almeno 3 caratteri")
+	@NotEmpty(message = "Il nome deve contenere qualcosa")
+	@Size(min = 3, message = "Il nome deve contenere almeno 3 caratteri")
 	@Column
-	private String name;
+    private String name;
 	
-	@NotEmpty(message="L'immagine deve contenere qualcosa")
+	@NotEmpty(message = "L'immagine deve contenere qualcosa")
 	@Size(min=5, message="L'immagine deve contenere almeno 5 caratteri")
 	@Column
 	private String img;
 	
-	@NotNull(message="Il prezzo deve avere un valore compreso tra 6 e 30")
-	@Min(value=6)
-	@Max(value=30)
-	@Column
-	private Integer price;
-	
-	@NotEmpty(message="La descrizione deve contenere qualcosa")
+	@NotEmpty(message = "La descrizione deve contenere qualcosa")
 	@Size(min=5, message="La descrizione deve contenere almeno 5 caratteri")
 	@Column
-	private String description;
+    private String description;
 	
-	public Pizzeria() {
+	@NotNull(message="Il prezzo deve avere un valore minimo di 1 e un massimo di 500")
+	@Min(value = 1)
+	@Max(value = 500)
+	@Column
+    private Integer price;
+	
+	public Drink() {
 		
 	}
 	
-	public Pizzeria(String name, String img, int price, String description) {
+	public Drink(String name, String img, String description, int price) {
+		setDescription(description);
 		setName(name);
 		setImg(img);
 		setPrice(price);
-		setDescription(description);
-	}
-
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	public String getName() {
-		return name;
 	}
 
 	public int getId() {
@@ -70,6 +58,10 @@ public class Pizzeria {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	public void setName(String name) {
@@ -83,9 +75,19 @@ public class Pizzeria {
 	public void setImg(String img) {
 		this.img = img;
 	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	public Integer getPrice() {
 		return price;
 	}
+
 	public void setPrice(Integer price) {
 		this.price = price;
 	}
@@ -95,5 +97,3 @@ public class Pizzeria {
 		return getId() + getName() + getImg() + getDescription() + getPrice();
 	}
 }
-
-

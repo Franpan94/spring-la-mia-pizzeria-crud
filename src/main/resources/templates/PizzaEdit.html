@@ -10,6 +10,21 @@
 </head>
 <body class="text-center pt-3">
    <h1>Modifica la tua pizza</h1>
+   
+   <div class="text-danger"
+		th:if="${errors}"
+	>
+		ERRORE:<br>
+		<ul>
+			<li
+				th:each="error : ${errors}"
+				th:object="${error}"
+			>
+				[[*{defaultMessage}]]
+			</li>
+		</ul>
+	</div>
+	
    <form method="POST" action="/pizza/update" th:object="${pizza}">
    
      <input type="number" name="id" th:field="*{id}" style="display:none;">
