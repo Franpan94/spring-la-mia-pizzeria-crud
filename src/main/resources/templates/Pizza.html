@@ -11,6 +11,8 @@
 <body th:object="${pizza}" class="text-center">
    <h1 class="text-center p-3">[[*{name}]]</h1>
    <img alt="pizza" th:src="*{img}" class="w-25">
+   <h3 class="pt-3">Descrizione</h3>
+   <span>[[*{description}]]</span>
    <h4 class="pt-3">Prezzo: [[*{price}]] €</h4>
    <button class="btn btn-success"><a class="text-white" href="/">HomePage</a></button>
    <button class="btn btn-warning">

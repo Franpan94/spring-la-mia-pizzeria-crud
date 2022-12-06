@@ -23,11 +23,11 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		
 		//Creazione pizze
-		Pizzeria p1 = new Pizzeria("Da Ciccio", "https://garage.pizza/wp-content/uploads/2020/01/DSCF3889-2560x2560.jpeg", 15);
-		Pizzeria p2 = new Pizzeria("La più buona", "https://garage.pizza/wp-content/uploads/2020/12/DSCF3442-2560x2560.jpg", 12);
-		Pizzeria p3 = new Pizzeria("Bufalina", "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Eq_it-na_pizza-margherita_sep2005_sml.jpg/800px-Eq_it-na_pizza-margherita_sep2005_sml.jpg", 10);
-		Pizzeria p4 = new Pizzeria("Toccasana", "https://garage.pizza/wp-content/uploads/2020/10/DSCF6160-2560x2560.jpeg", 18);
-		Pizzeria p5 = new Pizzeria("Vegetariana", "https://www.scattidigusto.it/wp-content/uploads/2021/07/pizzeria-50-Kalo-Ciro-Salvo-Napoli-pizza-Nerano.jpg", 13);
+		Pizzeria p1 = new Pizzeria("Da Ciccio", "https://garage.pizza/wp-content/uploads/2020/01/DSCF3889-2560x2560.jpeg", 15, "Una delle pizze più buone che ci sia, gustosa e saporita.");
+		Pizzeria p2 = new Pizzeria("La più buona", "https://garage.pizza/wp-content/uploads/2020/12/DSCF3442-2560x2560.jpg", 12, "Non si può rifiutare una pizza del genere, solo gusto.");
+		Pizzeria p3 = new Pizzeria("Bufalina", "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Eq_it-na_pizza-margherita_sep2005_sml.jpg/800px-Eq_it-na_pizza-margherita_sep2005_sml.jpg", 10, "Pura mozzarella di bufala, una delizia.");
+		Pizzeria p4 = new Pizzeria("Toccasana", "https://garage.pizza/wp-content/uploads/2020/10/DSCF6160-2560x2560.jpeg", 18, "Un vero e proprio toccasana, restituisce solo dolci sapori.");
+		Pizzeria p5 = new Pizzeria("Vegetariana", "https://www.scattidigusto.it/wp-content/uploads/2021/07/pizzeria-50-Kalo-Ciro-Salvo-Napoli-pizza-Nerano.jpg", 13, "Se vuoi mantenerti leggero è la pizza giusta.");
 		
 		pizzeriaService.save(p1);
 		pizzeriaService.save(p2);
