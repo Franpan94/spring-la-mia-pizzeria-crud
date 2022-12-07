@@ -24,7 +24,7 @@ public class Pizzeria {
 	
 	@NotEmpty(message="Il nome deve contenere qualcosa")
 	@Size(min=3, message="Il nome deve contenere almeno 3 caratteri")
-	@Column
+	@Column(unique = true)
 	private String name;
 	
 	@NotEmpty(message="L'immagine deve contenere qualcosa")

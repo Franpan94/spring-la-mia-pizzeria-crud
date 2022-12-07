@@ -68,7 +68,16 @@ public class DrinkController {
 			return "redirect:/drink/create";
 		}
 		
-		drinkService.save(drink);
+		try {
+			
+			drinkService.save(drink);
+			
+		}catch(Exception e) {
+			
+			String message = "Il nome deve essere unico";
+			redirectAttributes.addFlashAttribute("message", message);
+			return "redirect:/drink/create";
+		}
 		
 		return "redirect:/drink";
 	}
@@ -98,7 +107,17 @@ public class DrinkController {
 			return "redirect:/drink/edit/" + drink.getId();
 		}
        
-		drinkService.save(drink);
+        try {
+			
+			drinkService.save(drink);
+			
+		}catch(Exception e) {
+			
+			String message = "Il nome deve essere unico";
+			redirectAttributes.addFlashAttribute("message", message);
+			return "redirect:/drink/edit" + drink.getId();
+		}
+		
 		
 		return "redirect:/drink";
 	}

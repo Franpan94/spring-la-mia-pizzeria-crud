@@ -3,30 +3,73 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+
+<!-- Bootstrap CSS -->
+    <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
 </head>
 <body>
-   <div th:fragment="pizze(pz)" th:each="pizza : ${pz}" th:object="${pizza}">
-        <div class="p-3">
-            <a class="pb-3 ms_text_decoration" th:href="@{/pizza/{id} (id=*{id})}">[[*{name}]]</a>
-            <button class="btn btn-warning">
-               <a class="text-dark ms_text_decoration" th:href="@{/pizza/edit/{id} (id=*{id})}">Modifica la tua pizza</a>
-            </button>
-            <button class="btn btn-danger">
-               <a class="text-white ms_text_decoration" th:href="@{/pizza/delete/{id} (id=*{id})}">Elimina</a>
-            </button>
-         </div>
-   </div>
-   
-   <div th:fragment="drinks(drk)" th:each="drink : ${drk}" th:object="${drink}">
-        <div class="p-3">
-            <a class="pb-3 ms_text_decoration" th:href="@{/drink/{id} (id=*{id})}">[[*{name}]]</a>
-            <button class="btn btn-warning">
-               <a class="text-dark ms_text_decoration" th:href="@{/drink/edit/{id} (id=*{id})}">Modifica il tuo drink</a>
-            </button>
-            <button class="btn btn-danger">
-               <a class="text-white ms_text_decoration" th:href="@{/drink/delete/{id} (id=*{id})}">Elimina</a>
-            </button>
-         </div>
-   </div>
+   <table class="table table-striped table-dark"
+       th:fragment="pizze(pze)" th:each="pizza : ${pze}" th:object="${pizza}"
+   >
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nome</th>
+            <th scope="col" class="text-end">Modifica/Elimina</th>
+          </tr>
+        </thead>
+          <tbody>
+            <tr>
+              <th scope="row">[[*{id}]]</th>
+              <td>
+                 <a class="pb-3 ms_text_decoration" 
+                    th:href="@{/pizza/{id} (id=*{id})}">[[*{name}]]
+                 </a>
+              </td>
+              <td class="text-end">
+                <button class="btn btn-warning">
+                   <a class="text-dark ms_text_decoration" th:href="@{/pizza/edit/{id} (id=*{id})}">Modifica la tua pizza</a>
+                </button>
+                <button class="btn btn-danger">
+                   <a class="text-white ms_text_decoration" th:href="@{/pizza/delete/{id} (id=*{id})}">Elimina</a>
+                </button>
+              </td>
+            </tr>
+          </tbody>  
+      </table>
+
+   <table class="table table-striped table-dark"
+       th:fragment="drinks(drk)" th:each="drink : ${drk}" th:object="${drink}"
+   >
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nome</th>
+            <th scope="col" class="text-end">Modifica/Elimina</th>
+          </tr>
+        </thead>
+          <tbody>
+            <tr>
+              <th scope="row">[[*{id}]]</th>
+              <td>
+                 <a class="pb-3 ms_text_decoration" 
+                    th:href="@{/drink/{id} (id=*{id})}">[[*{name}]]
+                 </a>
+              </td>
+              <td class="text-end">
+                <button class="btn btn-warning">
+                   <a class="text-dark ms_text_decoration" th:href="@{/drink/edit/{id} (id=*{id})}">Modifica il tuo drink</a>
+                </button>
+                <button class="btn btn-danger">
+                   <a class="text-white ms_text_decoration" th:href="@{/drink/delete/{id} (id=*{id})}">Elimina</a>
+                </button>
+              </td>
+            </tr>
+          </tbody>  
+      </table>
 </body>
 </html>
+
+
+
+

@@ -25,7 +25,13 @@ public class PizzeriaController {
     @Autowired
     PizzeriaService pizzeriaService;
 	
-	@GetMapping
+    @GetMapping
+	public String getHome() {
+		
+		return "home";
+	}
+    
+	@GetMapping("/pizza")
 	public String index(Model model) {
 		
 		List<Pizzeria> pizze = pizzeriaService.findAll();
@@ -68,9 +74,18 @@ public class PizzeriaController {
 			return "redirect:/pizza/create";
 		}
 		
-		pizzeriaService.save(pizza);
+        try {
+			
+			pizzeriaService.save(pizza);
+			
+		}catch(Exception e) {
+			
+			String message = "Il nome deve essere unico";
+			redirectAttributes.addFlashAttribute("message", message);
+			return "redirect:/pizza/create";
+		}
 		
-		return "redirect:/";
+		return "redirect:/pizza";
 	}
 	
 	@GetMapping("/pizza/edit/{id}")
@@ -98,9 +113,18 @@ public class PizzeriaController {
 			return "redirect:/pizza/edit/" + pizza.getId();
 		}
 		
-		pizzeriaService.save(pizza);
+        try {
+			
+			pizzeriaService.save(pizza);
+			
+		}catch(Exception e) {
+			
+			String message = "Il nome deve essere unico";
+			redirectAttributes.addFlashAttribute("message", message);
+			return "redirect:/pizza/edit" + pizza.getId();
+		}
 		
-		return "redirect:/";
+		return "redirect:/pizza";
 	}
 	
 	@GetMapping("/pizza/delete/{id}")
@@ -110,6 +134,6 @@ public class PizzeriaController {
 		Pizzeria pizza = optPizza.get();
 		pizzeriaService.delete(pizza);
 		
-		return "redirect:/";
+		return "redirect:/pizza";
 	}
 }
