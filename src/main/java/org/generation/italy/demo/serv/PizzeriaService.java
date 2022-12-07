@@ -38,4 +38,9 @@ public class PizzeriaService {
 		
 		pizzeriaRepo.deleteById(id);
 	}
+	
+	public List<Pizzeria> findByName(String name) {
+		
+		return pizzeriaRepo.findByNameContainingIgnoreCase(name);
+	}
 }

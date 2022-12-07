@@ -14,12 +14,17 @@
    <h3 class="pt-3">Descrizione</h3>
    <span>[[*{description}]]</span>
    <h4 class="pt-3">Prezzo: [[*{price}]] €</h4>
-   <button class="btn btn-success"><a class="text-white" href="/drink">HomePage</a></button>
+   <button class="btn btn-success">
+      <a style="text-decoration: none" class="text-white" href="/drink">HomePage</a>
+   </button>
    <button class="btn btn-warning">
-       <a class="text-dark" th:href="@{/drink/edit/{id} (id=*{id})}">Modifica il tuo drink</a>
+       <a style="text-decoration: none" class="text-dark" th:href="@{/drink/edit/{id} (id=*{id})}">Modifica il tuo drink</a>
    </button>
    <button class="btn btn-danger">
-       <a class="text-white" th:href="@{/drinks/drink/delete/{id} (id=*{id})}">Elimina</a>
+       <a style="text-decoration: none" class="text-white" th:href="@{/drinks/drink/delete/{id} (id=*{id})}">Elimina</a>
+   </button>
+   <button class="btn btn-primary">
+       <a style="text-decoration: none" class="text-white" href="/drink/search">Torna alla tua ricerca</a>
    </button>
 </body>
 </html>
