@@ -16,13 +16,19 @@
    <span>[[*{description}]]</span>
    <h4 class="pt-3">Prezzo: [[*{price}]] €</h4>
    <button class="btn btn-success">
-       <a class="text-white ms_text_decoration" href="/pizza">HomePage</a>
+       <a style="text-decoration: none" class="text-white ms_text_decoration" href="/pizza">HomePage</a>
    </button>
    <button class="btn btn-warning">
-       <a class="text-dark ms_text_decoration" th:href="@{/pizza/edit/{id} (id=*{id})}">Modifica la tua pizza</a>
+       <a style="text-decoration: none" class="text-dark ms_text_decoration" th:href="@{/pizza/edit/{id} (id=*{id})}">Modifica la tua pizza</a>
    </button>
    <button class="btn btn-danger">
-       <a class="text-white ms_text_decoration" th:href="@{/pizza/delete/{id} (id=*{id})}">Elimina</a>
+       <a style="text-decoration: none" class="text-white ms_text_decoration" th:href="@{/pizza/delete/{id} (id=*{id})}">Elimina</a>
+   </button>
+   <button class="btn btn-primary">
+       <a style="text-decoration: none" class="text-white" href="/drink/search">Torna alla ricerca della tua pizza</a>
+   </button>
+   <button class="btn btn-dark">
+       <a style="text-decoration: none" class="text-white" href="/pizzaAndDrink/search">Torna alla ricerca complessiva</a>
    </button>
 </body>
 </html>

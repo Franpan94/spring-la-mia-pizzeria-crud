@@ -13,7 +13,7 @@
    <img alt="drink" th:src="*{img}" class="w-25">
    <h3 class="pt-3">Descrizione</h3>
    <span>[[*{description}]]</span>
-   <h4 class="pt-3">Prezzo: [[*{price}]] €</h4>
+   <h4 class="pt-3 pb-3">Prezzo: [[*{price}]] €</h4>
    <button class="btn btn-success">
       <a style="text-decoration: none" class="text-white" href="/drink">HomePage</a>
    </button>
@@ -24,7 +24,10 @@
        <a style="text-decoration: none" class="text-white" th:href="@{/drinks/drink/delete/{id} (id=*{id})}">Elimina</a>
    </button>
    <button class="btn btn-primary">
-       <a style="text-decoration: none" class="text-white" href="/drink/search">Torna alla tua ricerca</a>
+       <a style="text-decoration: none" class="text-white" href="/drink/search">Torna alla ricerca del tuo drink</a>
+   </button>
+   <button class="btn btn-dark">
+       <a style="text-decoration: none" class="text-white" href="/pizzaAndDrink/search">Torna alla ricerca complessiva</a>
    </button>
 </body>
 </html>

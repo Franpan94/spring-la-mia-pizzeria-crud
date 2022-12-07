@@ -24,7 +24,7 @@ import jakarta.validation.Valid;
 public class DrinkController {
 
 	@Autowired
-	DrinkService drinkService;
+	private DrinkService drinkService;
 	
 	@GetMapping
 	public String index(Model model) {

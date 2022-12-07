@@ -14,7 +14,7 @@
       <div class="row">
          <div class="col pt-5">
              <h1 class="text-center">Ricerca la tua pizza preferita!</h1>
-             <form>
+             <form method="GET" action="/pizza/search">
 		     <label for="exampleInputEmail1" class="form-label">Nome</label>
 		     <input type="text" name="name" class="form-control" id="exampleInputEmail1" 
                     aria-describedby="emailHelp" th:value="${name}"
@@ -22,7 +22,7 @@
              <div class="pt-4 pb-4">
 	            <button type="submit" class="btn btn-dark text-white">Cerca</button>
 	            <button type="submit" class="btn btn-dark text-white">   
-	               <a style="text-decoration: none" class="text-white" href="/drink">HomePage</a>
+	               <a style="text-decoration: none" class="text-white" href="/pizza">HomePage</a>
 	            </button>
 	         </div>
 	         <div class="class="pt-4"" th:replace= "frag :: pizze (${pizze})" ></div>

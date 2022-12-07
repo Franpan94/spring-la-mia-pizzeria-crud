@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class PizzaAndDrinkController {
 
 	@Autowired
-	PizzeriaService pzs;
+	private PizzeriaService pzs;
 	
 	@Autowired
-	DrinkService drs;
+	private DrinkService drs;
 	
 	@GetMapping("/search")
 	public String searchPizzaAndDrink(Model model, 

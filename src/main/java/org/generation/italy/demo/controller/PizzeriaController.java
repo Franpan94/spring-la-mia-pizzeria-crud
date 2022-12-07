@@ -24,7 +24,7 @@ import jakarta.validation.Valid;
 public class PizzeriaController {
     
     @Autowired
-    PizzeriaService pizzeriaService;
+    private PizzeriaService pizzeriaService;
 	
     @GetMapping
 	public String getHome() {
