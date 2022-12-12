@@ -122,18 +122,27 @@ public class PizzeriaController {
 			
 			String message = "Il nome deve essere unico";
 			redirectAttributes.addFlashAttribute("message", message);
-			return "redirect:/pizza/edit" + pizza.getId();
+			return "redirect:/pizza/edit/" + pizza.getId();
 		}
 		
 		return "redirect:/pizza";
 	}
 	
 	@GetMapping("/pizza/delete/{id}")
-	public String delete(@PathVariable("id") int id) {
+	public String delete(@PathVariable("id") int id, 
+			             RedirectAttributes redirectAttributes) {
 		
-		Optional<Pizzeria> optPizza = pizzeriaService.findPizzaId(id);
-		Pizzeria pizza = optPizza.get();
-		pizzeriaService.delete(pizza);
+		try {
+			
+			Optional<Pizzeria> optPizza = pizzeriaService.findPizzaId(id);
+			Pizzeria pizza = optPizza.get();
+			pizzeriaService.delete(pizza);
+			
+		} catch(Exception e) {
+			
+			String message = "Operazione non permessa";
+			redirectAttributes.addFlashAttribute("message", message);
+		}
 		
 		return "redirect:/pizza";
 	}

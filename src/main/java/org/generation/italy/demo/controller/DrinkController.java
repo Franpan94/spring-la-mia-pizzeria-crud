@@ -116,7 +116,7 @@ public class DrinkController {
 			
 			String message = "Il nome deve essere unico";
 			redirectAttributes.addFlashAttribute("message", message);
-			return "redirect:/drink/edit" + drink.getId();
+			return "redirect:/drink/edit/" + drink.getId();
 		}
 		
 		
@@ -124,11 +124,20 @@ public class DrinkController {
 	}
 	
 	@GetMapping("/delete/{id}")
-	public String delete(@PathVariable("id") int id) {
-		
-		Optional<Drink> optDrink = drinkService.findById(id);
-		Drink drink = optDrink.get();
-		drinkService.delete(drink);
+	public String delete(@PathVariable("id") int id,
+			              RedirectAttributes redirectAttributes) {
+       
+        try {
+			
+        	Optional<Drink> optDrink = drinkService.findById(id);
+    		Drink drink = optDrink.get();
+    		drinkService.delete(drink);
+			
+		}catch(Exception e) {
+			
+			String message = "Operazione non permessa";
+			redirectAttributes.addFlashAttribute("message", message);
+		}
 		
 		return "redirect:/drink";
 	}

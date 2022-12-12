@@ -2,6 +2,8 @@ package org.generation.italy.demo.pojo;
 
 
 
+import org.generation.italy.demo.inter.PriceableInt;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,7 +18,7 @@ import jakarta.validation.constraints.Size;
 
 @Entity
 @Table
-public class Pizzeria {
+public class Pizzeria implements PriceableInt {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,8 +35,8 @@ public class Pizzeria {
 	private String img;
 	
 	@NotNull(message="Il prezzo deve avere un valore compreso tra 6 e 30")
-	@Min(value=6)
-	@Max(value=30)
+	@Min(value=6, message="Il prezzo deve avere un valore maggiore o uguale a 6")
+	@Max(value=30, message="Il prezzo deve avere un valore minore o uguale a 30")
 	@Column
 	private Integer price;
 	

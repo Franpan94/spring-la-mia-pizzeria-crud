@@ -1,7 +1,9 @@
 package org.generation.italy.demo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.generation.italy.demo.inter.PriceableInt;
 import org.generation.italy.demo.pojo.Drink;
 import org.generation.italy.demo.pojo.Pizzeria;
 import org.generation.italy.demo.serv.DrinkService;
@@ -46,5 +48,19 @@ public class PizzaAndDrinkController {
 		model.addAttribute("drinks", drinks);
 		
 		return "DrinkAndPizza";
+	}
+	
+	@GetMapping("/priceAbleInt")
+	public String orderByPrice(Model model) {
+
+		List<PriceableInt> priceAbleInts = new ArrayList<>();
+		priceAbleInts.addAll(drs.findAll());
+		priceAbleInts.addAll(pzs.findAll());
+		
+		priceAbleInts.sort((p1, p2) -> p1.getPrice() - p2.getPrice());
+		model.addAttribute("priceAbleInts", priceAbleInts);
+		
+		return "PriceAbleInt";
+		
 	}
 }

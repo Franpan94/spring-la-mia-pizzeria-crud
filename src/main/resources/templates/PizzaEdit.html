@@ -12,60 +12,24 @@
 <body class="pt-3">
    <h1 class="text-center">Modifica la tua pizza</h1>
    
-   <div class="text-danger"
-		th:if="${errors}"
-	>
-		ERRORE:<br>
-		<ul>
-			<li
-				th:each="error : ${errors}"
-				th:object="${error}"
-			>
-				[[*{defaultMessage}]]
-			</li>
-		</ul>
-	</div>
-	<div class="text-danger text-center">[[${message}]]</div>
+   <div th:replace="frag :: errors()"></div>
 	
-<div class="container">
-   <div class="row">
-       <div class="col">
-             <form method="POST" action="/pizza/update" th:object="${pizza}">
-             <input type="number" name="id" th:field="*{id}" style="display:none">
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Nome</label>
-    <input type="text" name="name" class="form-control" id="exampleInputEmail1" 
-      aria-describedby="emailHelp" th:field="*{name}"
-    >
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Immagine</label>
-    <input type="text" name="img" class="form-control" id="exampleInputEmail1" 
-      aria-describedby="emailHelp" th:field="*{img}"
-    >
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Descrzione</label>
-    <input type="text" name="description" class="form-control" id="exampleInputEmail1" 
-      aria-describedby="emailHelp" th:field="*{description}"
-    >
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Prezzo</label>
-    <input type="text" name="price" class="form-control" id="exampleInputEmail1" 
-      aria-describedby="emailHelp" th:field="*{price}"
-    >
-  </div>
-  <div class="text-center">
-     <button type="submit" class="btn btn-warning text-black">Modifica</button>
-     <button type="submit" class="btn btn-success">
-        <a style="text-decoration: none" class="text-white" href="/pizza">HomePage</a>
-     </button>
-  </div>
-</form> 
+    <div class="container">
+      <div class="row">
+         <div class="col">
+            <form method="POST" action="/pizza/update" th:object="${pizza}">
+               <input type="number" name="id" th:field="*{id}" style="display:none">
+               <div th:replace="frag :: form()"></div>
+               <div class="text-center">
+                  <button type="submit" class="btn btn-warning text-black">Modifica</button>
+                  <button type="submit" class="btn btn-success">
+                     <a style="text-decoration: none" class="text-white" href="/pizza">HomePage</a>
+                  </button>
+               </div>
+             </form> 
+          </div>
        </div>
-   </div>
-</div>
+     </div>
 </body>
 </html>
 
